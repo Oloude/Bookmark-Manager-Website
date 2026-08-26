@@ -1,0 +1,45 @@
+import { FiLogOut } from "react-icons/fi";
+import { IoMoonOutline, IoSunnyOutline } from "react-icons/io5";
+import { LuPalette } from "react-icons/lu";
+
+function ProfileDropdown() {
+  return (
+    <div className="absolute top-17 right-8 border border-neutral100L rounded-lg shadow-profile w-62 divide-y divide-neutral50 z-20 bg-neutral0">
+      <div className="px-4 py-3 flex items-center gap-3">
+        <img
+          src="/image-avatar.webp"
+          alt=""
+          className="w-10 h-10 rounded-full"
+        />
+        <div className="flex flex-col gap-1">
+          <h5 className="text-neutral900L text-preset4">Emily Carter</h5>
+          <p className="text-preset4M text-neutral800L">emily101@email.com</p>
+        </div>
+      </div>
+      <div className="px-4 py-3 flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2 text-preset4M text-neutral800L">
+          <LuPalette className="w-4 h-4" />
+          Theme
+        </div>
+        <button className="p-0.5 bg-neutral300L rounded w-15 h-7.5 flex">
+          <span
+            className={`bg-neutral0 rounded flex-1 flex items-center justify-center`}
+          >
+            <IoSunnyOutline className="w-4 h-4" />
+          </span>
+          <span className={` rounded flex-1 flex items-center justify-center`}>
+            <IoMoonOutline className="w-4 h-4" />
+          </span>
+        </button>
+      </div>
+      <div className="px-4 py-2">
+        <button className="flex items-center gap-2 text-preset4M text-neutral800L">
+          <FiLogOut className="w-5 h-4" />
+          Logout
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default ProfileDropdown;

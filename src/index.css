@@ -8,7 +8,7 @@
   --color-neutral900L: #051513;
   --color-neutral800L: #4c5c59;
   --color-neutral500L: #899492;
-  --color-neutral400L: #COCFCC;
+  --color-neutral400L: #C0CFCC;
   --color-neutral300L: #dde9e7;
   --color-neutral100L: #e8f0ef;
 
@@ -21,6 +21,7 @@
   --color-neutral100D: #b1b9b9;
 
   --color-neutral0: #ffffff;
+  --color-neutral50: #E9EAEB;
 
   --color-teal700: #014745;
   --color-teal800: #013c3b;
@@ -67,4 +68,7 @@
   --text-preset5--line-height: 140%;
   --text-preset5--letter-spacing: 0px;
   --text-preset5--font-weight: 500;
+
+  --shadow-input : 0 1px 2px 0 rgba(10, 13, 18, 0.05);
+  --shadow-profile : 0 6px 14px 0 rgba(34, 38, 39, 0.1);
 }
