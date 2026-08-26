@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-lg: 90rem;
+  --font-manrope: "Manrope", sans-serif;
+
+  --color-neutral900L: #051513;
+  --color-neutral800L: #4c5c59;
+  --color-neutral500L: #899492;
+  --color-neutral400L: #COCFCC;
+  --color-neutral300L: #dde9e7;
+  --color-neutral100L: #e8f0ef;
+
+  --color-neutral900D: #001414;
+  --color-neutral800D: #001f1f;
+  --color-neutral600D: #002e2d;
+  --color-neutral500D: #004241;
+  --color-neutral400D: #004746;
+  --color-neutral300D: #00706e;
+  --color-neutral100D: #b1b9b9;
+
+  --color-neutral0: #ffffff;
+
+  --color-teal700: #014745;
+  --color-teal800: #013c3b;
+
+  --color-red600: #fd4740;
+  --color-red800: #cb0a04;
+
+  --text-preset1: 24px;
+  --text-preset1--line-height: 140%;
+  --text-preset1--letter-spacing: 0px;
+  --text-preset1--font-weight: 700;
+
+  --text-preset2: 20px;
+  --text-preset2--line-height: 120%;
+  --text-preset2--letter-spacing: 0px;
+  --text-preset2--font-weight: 700;
+
+  --text-preset2S: 20px;
+  --text-preset2S--line-height: 120%;
+  --text-preset2S--letter-spacing: 0px;
+  --text-preset2S--font-weight: 600;
+
+  --text-preset3: 16px;
+  --text-preset3--line-height: 140%;
+  --text-preset3--letter-spacing: 0px;
+  --text-preset3--font-weight: 600;
+
+  --text-preset3M: 16px;
+  --text-preset3M--line-height: 130%;
+  --text-preset3M--letter-spacing: 0px;
+  --text-preset3M--font-weight: 500;
+
+  --text-preset4: 14px;
+  --text-preset4--line-height: 140%;
+  --text-preset4--letter-spacing: 0px;
+  --text-preset4--font-weight: 600;
+
+  --text-preset4M: 14px;
+  --text-preset4M--line-height: 150%;
+  --text-preset4M--letter-spacing: 0px;
+  --text-preset4M--font-weight: 500;
+
+  --text-preset5: 12px;
+  --text-preset5--line-height: 140%;
+  --text-preset5--letter-spacing: 0px;
+  --text-preset5--font-weight: 500;
+}
