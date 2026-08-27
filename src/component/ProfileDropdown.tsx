@@ -1,8 +1,12 @@
 import { FiLogOut } from "react-icons/fi";
 import { IoMoonOutline, IoSunnyOutline } from "react-icons/io5";
 import { LuPalette } from "react-icons/lu";
+import useBookmark from "../BookmarkState";
 
 function ProfileDropdown() {
+  const handleThemeChange = useBookmark((state) => state.handleThemeChange);
+  const theme = useBookmark((state) => state.theme);
+
   return (
     <div className="absolute top-17 right-8 border border-neutral100L rounded-lg shadow-profile w-62 divide-y divide-neutral50 z-20 bg-neutral0">
       <div className="px-4 py-3 flex items-center gap-3">
@@ -21,13 +25,18 @@ function ProfileDropdown() {
           <LuPalette className="w-4 h-4" />
           Theme
         </div>
-        <button className="p-0.5 bg-neutral300L rounded w-15 h-7.5 flex">
+        <button
+          onClick={handleThemeChange}
+          className="p-0.5 bg-neutral300L rounded w-15 h-7.5 flex cursor-pointer"
+        >
           <span
-            className={`bg-neutral0 rounded flex-1 flex items-center justify-center`}
+            className={` rounded flex-1 flex items-center justify-center ${theme === "light" ? "bg-neutral0" : ""}`}
           >
             <IoSunnyOutline className="w-4 h-4" />
           </span>
-          <span className={` rounded flex-1 flex items-center justify-center`}>
+          <span
+            className={` rounded flex-1 flex items-center justify-center ${theme === "dark" ? "bg-neutral0" : ""}`}
+          >
             <IoMoonOutline className="w-4 h-4" />
           </span>
         </button>
