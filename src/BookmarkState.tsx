@@ -17,15 +17,23 @@ type BookmarkType = {
 
 type BookmarkState = {
   theme: "light" | "dark";
-  handleThemeChange: () => void;
   bookmarks: BookmarkType[];
+  activeBookmark: string;
+  sortBy : string;
+  handleThemeChange: () => void;
+  handleActiveBookmarkChange: (active: string) => void;
+  handleSortByChange :(sort:string) => void;
 };
 
 const useBookmark = create<BookmarkState>((set) => ({
   theme: "light",
   bookmarks: data.bookmarks,
+  activeBookmark: "Home",
+  sortBy : 'Recently added',
   handleThemeChange: () =>
     set((state) => ({ theme: state.theme === "light" ? "dark" : "light" })),
+  handleActiveBookmarkChange: (active) => set({ activeBookmark: active }),
+  handleSortByChange : (sort) => set({sortBy : sort}),
 }));
 
 export default useBookmark;
