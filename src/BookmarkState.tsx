@@ -28,6 +28,7 @@ type BookmarkState = {
   handleArchiveBookmark: (id: string) => void;
   handleUnarchiveBookmark: (id: string) => void;
   handleDeleteBookmark: (id: string) => void;
+  handleAddNewBookmark : (bookmark : BookmarkType) => void;
 };
 
 const useBookmark = create<BookmarkState>((set) => ({
@@ -69,6 +70,7 @@ const useBookmark = create<BookmarkState>((set) => ({
     set((state) => ({
       bookmarks: state.bookmarks.filter((bookmark) => bookmark.id !== id),
     })),
+   handleAddNewBookmark : (bookmark) => set(state => ({bookmarks : [...state.bookmarks, bookmark]}))
 }));
 
 export default useBookmark;

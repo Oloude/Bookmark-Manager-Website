@@ -4,10 +4,12 @@ import { IoIosMenu } from "react-icons/io";
 import { useState } from "react";
 import MobileSidebar from "./MobileSidebar";
 import ProfileDropdown from "../ProfileDropdown";
+import AddBookmarkModal from "../AddBookmarkModal";
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
   const [showProfileDropwdown, setShowProfileDropdown] = useState(false)
+  const [showAddBookmarkModal, setShowAddBookmarkModal] = useState(false)
 
   function handleToggleShowMenu() {
     setShowMenu((prev) => !prev);
@@ -16,7 +18,18 @@ function Header() {
   function handleToggleProfileDropwdown(){
    setShowProfileDropdown(prev => !prev)
   }
+
+  function handleOpenAddBookmarkModal(){
+    setShowAddBookmarkModal(true)
+  }
+
+  function handleCloseAddBookmarkModal(){
+    setShowAddBookmarkModal(false)
+  }
+
   return (
+    <>
+    {showAddBookmarkModal && <AddBookmarkModal handleClose={handleCloseAddBookmarkModal}/>}
     <header className="px-4 py-3 md:px-8 md:py-4 flex items-center justify-between gap-4 bg-neutral0 border-b border-b-neutral100L">
       <div className="flex items-center gap-2.5 ">
         <button
@@ -40,11 +53,11 @@ function Header() {
       </div>
 
       <div className="flex items-center gap-2.5 lg:gap-4">
-        <button className="bg-teal700 sm:px-4 sm:py-3 rounded-lg text-preset3M text-neutral0 hidden md:flex items-center gap-2">
+        <button onClick={handleOpenAddBookmarkModal} className="bg-teal700 sm:px-4 sm:py-3 rounded-lg text-preset3M text-neutral0 hidden md:flex items-center gap-2 cursor-pointer">
           {" "}
           <GoPlus className="w-4 h-4" /> Add Bookmark
         </button>
-        <button className="bg-teal700 p-2.5 rounded-lg text-preset3M text-neutral0 md:hidden">
+        <button onClick={handleOpenAddBookmarkModal} className="bg-teal700 p-2.5 rounded-lg text-preset3M text-neutral0 md:hidden cursor-pointer">
           {" "}
           <GoPlus className="w-4 h-4" />{" "}
         </button>
@@ -70,6 +83,7 @@ function Header() {
         <MobileSidebar handleToggleShowMenu={handleToggleShowMenu} />
       </div>
     </header>
+    </>
   );
 }
 
