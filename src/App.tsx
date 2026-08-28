@@ -3,7 +3,6 @@ import useBookmark from "./BookmarkState";
 import Header from "./component/Layout/Header";
 import Sidebar from "./component/Layout/Sidebar";
 import Homepage from "./Pages/Homepage";
-import EditBookmarkModal from "./component/EditBookmarkModal";
 
 function App() {
   const theme = useBookmark((state) => state.theme);

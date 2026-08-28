@@ -4,7 +4,6 @@ import { FiCopy, FiEdit } from "react-icons/fi";
 import { HiOutlineArchiveBox } from "react-icons/hi2";
 import { LuSquareArrowOutUpRight } from "react-icons/lu";
 import { RiDeleteBinLine } from "react-icons/ri";
-import useBookmark from "../BookmarkState";
 import { useState } from "react";
 import ArchiveModal from "./ArchiveModal";
 import UnarchiveModal from "./UnarchiveModal";
