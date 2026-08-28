@@ -42,7 +42,7 @@ function BookmarkCard({
 
   return (
     <div className="rounded-xl shadow-card bg-neutral0 border border-neutral300L relative">
-      {shoDropdown && <BookmarkCardDropdown isArchived={isArchived} pinned={pinned} />}
+      {shoDropdown && <BookmarkCardDropdown isArchived={isArchived} pinned={pinned} id={id} />}
       <div className=" p-4 flex flex-col gap-4">
         <div className="flex items-start justify-between">
           <div className="flex items-start gap-2">

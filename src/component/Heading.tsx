@@ -1,19 +1,32 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { LuArrowUpDown } from "react-icons/lu";
 import SortDropdown from "./SortDropdown";
 import useBookmark from "../BookmarkState";
 
 function Heading() {
   const activeBookmark = useBookmark(state => state.activeBookmark)
+  const selectedTags = useBookmark(state => state.selectedTags)
   const [shoDropdown, setShowDropdown] = useState(false);
 
   function handleToggleShowDrodown() {
     setShowDropdown((prev) => !prev);
   }
-  let title = 'All bookmarks'
+  // let title<string | React.ReactNode> = 'All bookmarks'
+  let title: string | React.ReactNode = "All bookmarks";
 
   if(activeBookmark === 'Archived'){
     title = 'Archived bookmarks'
+  }
+  if(activeBookmark === 'Tags'){
+    // title = `Bookmarks tagged: ${<span className='text-teal700'>selectedTags.join(', ')</span>}`
+     title = (
+  <>
+    Bookmarks tagged:{" "}
+    <span className="text-teal700">
+      {selectedTags.join(", ")}
+    </span>
+  </>
+);
   }
   return (
     <header className="flex items-center justify-between gap-4 relative">

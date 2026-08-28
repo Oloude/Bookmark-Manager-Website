@@ -19,21 +19,56 @@ type BookmarkState = {
   theme: "light" | "dark";
   bookmarks: BookmarkType[];
   activeBookmark: string;
-  sortBy : string;
+  sortBy: string;
+  selectedTags: string[];
   handleThemeChange: () => void;
   handleActiveBookmarkChange: (active: string) => void;
-  handleSortByChange :(sort:string) => void;
+  handleSortByChange: (sort: string) => void;
+  handleSelectedTags: (tag: string) => void;
+  handleArchiveBookmark: (id: string) => void;
+  handleUnarchiveBookmark: (id: string) => void;
+  handleDeleteBookmark: (id: string) => void;
 };
 
 const useBookmark = create<BookmarkState>((set) => ({
   theme: "light",
   bookmarks: data.bookmarks,
   activeBookmark: "Home",
-  sortBy : 'Recently added',
+  sortBy: "Recently added",
+  selectedTags: [],
   handleThemeChange: () =>
     set((state) => ({ theme: state.theme === "light" ? "dark" : "light" })),
-  handleActiveBookmarkChange: (active) => set({ activeBookmark: active }),
-  handleSortByChange : (sort) => set({sortBy : sort}),
+  handleActiveBookmarkChange: (active) =>
+    set((state) => {
+      if (active !== "Tags") {
+        return { selectedTags: [], activeBookmark: active };
+      }
+      return { activeBookmark: active };
+    }),
+  handleSortByChange: (sort) => set({ sortBy: sort }),
+  handleSelectedTags: (tag) =>
+    set((state) => ({
+      // state.selectedTags.includes(tag) ? selectedTags : state.selectedTags.filter(t => t !== tag) : selectedTags: [...state.selectedTags, tag]
+      selectedTags: state.selectedTags.includes(tag)
+        ? state.selectedTags.filter((item) => item !== tag)
+        : [...state.selectedTags, tag],
+    })),
+  handleArchiveBookmark: (id) =>
+    set((state) => ({
+      bookmarks: state.bookmarks.map((bookmark) =>
+        bookmark.id === id ? { ...bookmark, isArchived: true } : bookmark,
+      ),
+    })),
+  handleUnarchiveBookmark: (id) =>
+    set((state) => ({
+      bookmarks: state.bookmarks.map((bookmark) =>
+        bookmark.id === id ? { ...bookmark, isArchived: false } : bookmark,
+      ),
+    })),
+  handleDeleteBookmark: (id) =>
+    set((state) => ({
+      bookmarks: state.bookmarks.filter((bookmark) => bookmark.id !== id),
+    })),
 }));
 
 export default useBookmark;

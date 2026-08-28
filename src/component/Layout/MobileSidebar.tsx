@@ -18,6 +18,8 @@ function MobileSidebar({ handleToggleShowMenu }: SidebarProps) {
     (state) => state.handleActiveBookmarkChange,
   );
   const bookmarks = useBookmark((state) => state.bookmarks);
+  const selectedTags = useBookmark((state) => state.selectedTags);
+  const handleSelectedTags = useBookmark((state) => state.handleSelectedTags);
 
   const tags = bookmarks.reduce(
     (acc, bookmark) => {
@@ -28,6 +30,11 @@ function MobileSidebar({ handleToggleShowMenu }: SidebarProps) {
   );
 
   const tagsArr = Object.entries(tags);
+
+  function handleSelectTag(title: string) {
+    handleActiveBookmarkChange("Tags");
+    handleSelectedTags(title);
+  }
 
   return (
     <div className="w-74 border-r border-r-neutral100L flex flex-col gap-4 bg-neutral0 h-full relative">
@@ -53,7 +60,10 @@ function MobileSidebar({ handleToggleShowMenu }: SidebarProps) {
             </button>
           ))}
         </div>
-        <div className="flex flex-col overflow-y-auto min-h-0" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+        <div
+          className="flex flex-col overflow-y-auto min-h-0"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
           <h3 className="px-3 pb-1 text-preset5 font-bold text-neutral800L">
             Tags
           </h3>
@@ -68,7 +78,9 @@ function MobileSidebar({ handleToggleShowMenu }: SidebarProps) {
                     type="checkbox"
                     name=""
                     id=""
-                    className="w-4 h-4 accent-neutral900L"
+                    checked={selectedTags.includes(title)}
+                    onChange={() => handleSelectTag(title)}
+                    className="w-4 h-4 accent-teal700"
                   />
                   <h4 className="text-preset3M text-neutral800L">{title}</h4>
                 </div>

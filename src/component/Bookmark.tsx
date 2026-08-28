@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+
 import useBookmark from "../BookmarkState";
 import BookmarkCard from "./BookmarkCard";
 import sort from "../utils/sort";
@@ -7,6 +7,7 @@ function Bookmark() {
   const bookmarks = useBookmark((state) => state.bookmarks);
   const activeBookmark = useBookmark((state) => state.activeBookmark);
   const sortBy = useBookmark((state) => state.sortBy);
+  const selectedTags = useBookmark(state => state.selectedTags)
 
   // const [filteredData, setFilteredData] = useState(bookmarks);
 
@@ -27,6 +28,9 @@ function Bookmark() {
     bookmarks.filter((bookmark) => {
       if (activeBookmark === "Archived") {
         return bookmark.isArchived;
+      }
+      if(activeBookmark === 'Tags'){
+       return selectedTags.every((tag) => bookmark.tags.includes(tag));
       }
 
       return true;
