@@ -30,10 +30,10 @@ function Heading() {
   }
   return (
     <header className="flex items-center justify-between gap-4 relative">
-      <h1 className="text-preset2 text-neutral900L">{title}</h1>
+      <h1 className="text-preset2 text-neutral900L dark:text-neutral0">{title}</h1>
       <button
         onClick={handleToggleShowDrodown}
-        className="px-3 py-2.5 border border-neutral400L cursor-pointer hover:scale-105 transition-all rounded-lg flex items-center gap-2 bg-neutral0 text-preset3M text-neutral900L"
+        className="px-3 py-2.5 border border-neutral400L dark:border-neutral400D cursor-pointer hover:scale-105 transition-all rounded-lg flex items-center gap-2 bg-neutral0 dark:bg-neutral900D text-preset3M text-neutral900L dark:text-neutral0"
       >
         <LuArrowUpDown className="w-5 h-5" /> Sort by
       </button>

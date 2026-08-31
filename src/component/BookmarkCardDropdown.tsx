@@ -13,6 +13,7 @@ type DropdownProps = {
   isArchived: boolean;
   pinned: boolean;
   id: string;
+  handleCloseBookmarkDropdown: () => void;
 };
 
 const btns = [
@@ -26,7 +27,12 @@ const btns = [
   { title: "Delete Permanently", icon: RiDeleteBinLine },
 ];
 
-function BookmarkCardDropdown({ isArchived, pinned, id }: DropdownProps) {
+function BookmarkCardDropdown({
+  isArchived,
+  pinned,
+  id,
+  handleCloseBookmarkDropdown,
+}: DropdownProps) {
   const [showArchiveModal, setShowArchiveModal] = useState(false);
   const [showUnarchiveModal, setShowUnarchiveModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -59,12 +65,12 @@ function BookmarkCardDropdown({ isArchived, pinned, id }: DropdownProps) {
       {showDeleteModal && (
         <DeleteModal id={id} handleClose={() => setShowDeleteModal(false)} />
       )}
-      <div className="flex flex-col gap-1 p-2 rounded-lg bg-neutral0 border border-neutral100L shadow-profile absolute right-4 top-10 z-20">
+      <div className="flex flex-col gap-1 p-2 rounded-lg bg-neutral0 dark:bg-neutral600D border border-neutral100L dark:border-neutral500D shadow-profile absolute right-4 top-10 z-20">
         {btns.map(({ icon: Icon, title }) => (
           <button
             key={title}
             onClick={() => handleClick(title)}
-            className={`p-2 rounded-md items-center gap-2 text-preset4M text-neutral800L ${
+            className={`p-2 rounded-md items-center gap-2 text-preset4M text-neutral800L dark:text-neutral100D ${
               isArchived &&
               (title === "Archive" ||
                 title === "Unpin" ||

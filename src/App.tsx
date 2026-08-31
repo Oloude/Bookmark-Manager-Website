@@ -18,7 +18,7 @@ function App() {
         <Sidebar />
         <div className="flex flex-col flex-1">
           <Header />
-          <main className="flex-1 overflow-y-auto bg-neutral100L">
+          <main className="flex-1 overflow-y-auto bg-neutral100L dark:bg-neutral900D">
             <Homepage />
           </main>
         </div>
