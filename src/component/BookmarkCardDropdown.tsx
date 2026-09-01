@@ -15,7 +15,6 @@ type DropdownProps = {
   isArchived: boolean;
   pinned: boolean;
   id: string;
-  handleCloseBookmarkDropdown: () => void;
   url: string;
 };
 
@@ -35,7 +34,7 @@ function BookmarkCardDropdown({
   pinned,
   id,
   url,
-  handleCloseBookmarkDropdown,
+  
 }: DropdownProps) {
   const [showArchiveModal, setShowArchiveModal] = useState(false);
   const [showUnarchiveModal, setShowUnarchiveModal] = useState(false);
@@ -93,7 +92,7 @@ function BookmarkCardDropdown({
     <>
       {showArchiveModal && (
         <ArchiveModal id={id} handleClose={() => setShowArchiveModal(false)} />
-      )}
+      )} 
       {showUnarchiveModal && (
         <UnarchiveModal
           id={id}
