@@ -29,6 +29,8 @@ type BookmarkState = {
   handleUnarchiveBookmark: (id: string) => void;
   handleDeleteBookmark: (id: string) => void;
   handleAddNewBookmark : (bookmark : BookmarkType) => void;
+  handleVisitBookmark : (id : string) => void;
+  handleTogglePinBookmark : (id : string) => void;
 };
 
 const useBookmark = create<BookmarkState>((set) => ({
@@ -70,7 +72,9 @@ const useBookmark = create<BookmarkState>((set) => ({
     set((state) => ({
       bookmarks: state.bookmarks.filter((bookmark) => bookmark.id !== id),
     })),
-   handleAddNewBookmark : (bookmark) => set(state => ({bookmarks : [...state.bookmarks, bookmark]}))
+   handleAddNewBookmark : (bookmark) => set(state => ({bookmarks : [...state.bookmarks, bookmark]})),
+   handleVisitBookmark : (id) => set(state => ({bookmarks : state.bookmarks.map(bookmark => bookmark.id ===id ? {...bookmark, visitCount : bookmark.visitCount + 1} : bookmark)})),
+   handleTogglePinBookmark : (id) => set(state => ({bookmarks : state.bookmarks.map(bookmark => bookmark.id === id ? {...bookmark, pinned : !bookmark.pinned} : bookmark)}))
 }));
 
 export default useBookmark;

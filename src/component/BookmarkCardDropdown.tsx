@@ -8,12 +8,15 @@ import { useState } from "react";
 import ArchiveModal from "./ArchiveModal";
 import UnarchiveModal from "./UnarchiveModal";
 import DeleteModal from "./DeleteModal";
+import useBookmark from "../BookmarkState";
+import { toast } from "react-toastify";
 
 type DropdownProps = {
   isArchived: boolean;
   pinned: boolean;
   id: string;
   handleCloseBookmarkDropdown: () => void;
+  url: string;
 };
 
 const btns = [
@@ -31,11 +34,32 @@ function BookmarkCardDropdown({
   isArchived,
   pinned,
   id,
+  url,
   handleCloseBookmarkDropdown,
 }: DropdownProps) {
   const [showArchiveModal, setShowArchiveModal] = useState(false);
   const [showUnarchiveModal, setShowUnarchiveModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const handleAddVisitCount = useBookmark((state) => state.handleVisitBookmark);
+  const handleTogglePinBookmark = useBookmark(
+    (state) => state.handleTogglePinBookmark,
+  );
+
+  function handleVisitBookmark() {
+    window.open(url, "_blank");
+    handleAddVisitCount(id);
+  }
+
+  async function handleCopyUrl() {
+    try {
+      await navigator.clipboard.writeText(url);
+      toast("Url copied");
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Error copying URL";
+
+      toast(message);
+    }
+  }
 
   function handleClick(title: string) {
     switch (title) {
@@ -47,6 +71,20 @@ function BookmarkCardDropdown({
         break;
       case "Delete Permanently":
         setShowDeleteModal(true);
+        break;
+      case "Visit":
+        handleVisitBookmark();
+        break;
+      case "Copy URL":
+        handleCopyUrl();
+        break;
+      case "Pin":
+        handleTogglePinBookmark(id);
+        toast('Pin Bookmark')
+        break;
+      case "Unpin":
+        handleTogglePinBookmark(id);
+        toast('Unpin Bookmark')
         break;
     }
   }

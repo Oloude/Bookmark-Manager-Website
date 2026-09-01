@@ -37,7 +37,7 @@ function Header() {
         <div className="flex items-center gap-2.5 md:gap-4 flex-1 min-w-0">
           <button
             onClick={handleToggleShowMenu}
-            className="w-10 h-10 md:w-11 md:h-11 flex lg:hidden items-center justify-center border border-neutral400L dark:border-neutral400D bg-neutral800D rounded-lg cursor-pointer shrink-0"
+            className="w-10 h-10 md:w-11 md:h-11 flex lg:hidden items-center justify-center border border-neutral400L dark:border-neutral400D dark:bg-neutral800D rounded-lg cursor-pointer shrink-0"
           >
             <IoIosMenu className="w-5 h-5 text-neutral800L dark:text-neutral0" />
           </button>

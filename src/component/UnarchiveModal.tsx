@@ -1,5 +1,6 @@
 import { MdClose } from "react-icons/md";
 import useBookmark from "../BookmarkState";
+import { toast } from "react-toastify";
 
 type UnarchiveProps = {
   id: string;
@@ -14,6 +15,8 @@ function UnarchiveModal({ id, handleClose }: UnarchiveProps) {
   function handleUnarchive(id: string) {
     handleUnarchiveBookmark(id);
     handleClose();
+    toast('Unarchived Bookmark')
+
   }
   return (
     <section className="bg-black/10 backdrop-blur-xs backdrop-brightness-100 flex items-center justify-center fixed inset-0 w-full h-screen z-50 font-manrope px-4 md:px-8">

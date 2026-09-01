@@ -3,6 +3,7 @@ import useBookmark from "./BookmarkState";
 import Header from "./component/Layout/Header";
 import Sidebar from "./component/Layout/Sidebar";
 import Homepage from "./Pages/Homepage";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const theme = useBookmark((state) => state.theme);
@@ -13,13 +14,13 @@ function App() {
 
   return (
     <>
-      
       <div className="flex h-screen font-manrope">
         <Sidebar />
         <div className="flex flex-col flex-1">
           <Header />
           <main className="flex-1 overflow-y-auto bg-neutral100L dark:bg-neutral900D">
             <Homepage />
+            <ToastContainer />
           </main>
         </div>
       </div>

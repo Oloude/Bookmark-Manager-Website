@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import useBookmark from "../BookmarkState";
 import getFavicon from "../utils/getFavicon";
+import { toast } from "react-toastify";
 
 type AddBookmarkProps = {
   handleClose: () => void;
@@ -81,6 +82,7 @@ function AddBookmarkModal({ handleClose }: AddBookmarkProps) {
     };
 
     handleAddNewBookmark(bookmark);
+    toast('Add New Bookmark')
   }
 
   return (

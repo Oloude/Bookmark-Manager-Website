@@ -1,5 +1,6 @@
 import { MdClose } from "react-icons/md";
 import useBookmark from "../BookmarkState";
+import { toast } from "react-toastify";
 
 type DeleteProps = {
   id: string;
@@ -14,6 +15,7 @@ function DeleteModal({ id, handleClose }: DeleteProps) {
   function handleDelete(id: string) {
     handleDeleteBookmark(id);
     handleClose();
+    toast('Deleted Bookmark')
   } 
 
   return (

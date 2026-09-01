@@ -42,7 +42,15 @@ function BookmarkCard({
 
   return (
     <div className="rounded-xl shadow-card bg-neutral0 dark:bg-neutral800D border border-neutral300L dark:border-neutral400D relative">
-      {shoDropdown && <BookmarkCardDropdown isArchived={isArchived} pinned={pinned} id={id} handleCloseBookmarkDropdown={handleToggleShowDrodown} />}
+      {shoDropdown && (
+        <BookmarkCardDropdown
+          isArchived={isArchived}
+          pinned={pinned}
+          id={id}
+          handleCloseBookmarkDropdown={handleToggleShowDrodown}
+          url={url}
+        />
+      )}
       <div className=" p-4 flex flex-col gap-4">
         <div className="flex items-start justify-between">
           <div className="flex items-start gap-2">
@@ -50,8 +58,12 @@ function BookmarkCard({
               <img src={favicon} alt="" />
             </div>
             <div className="space-y-1">
-              <h3 className="text-preset2 text-neutral900L dark:text-neutral0">{title}</h3>
-              <p className="text-preset5 text-neutral800L dark:text-neutral100D">{url}</p>
+              <h3 className="text-preset2 text-neutral900L dark:text-neutral0">
+                {title}
+              </h3>
+              <p className="text-preset5 text-neutral800L dark:text-neutral100D">
+                {url}
+              </p>
             </div>
           </div>
           <button
@@ -62,7 +74,9 @@ function BookmarkCard({
           </button>
         </div>
         <hr className="text-neutral300L dark:text-neutral500D" />
-        <p className="text-preset4M text-neutral800L dark:text-neutral100D">{description}</p>
+        <p className="text-preset4M text-neutral800L dark:text-neutral100D">
+          {description}
+        </p>
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
             <Tag key={tag} tag={tag} />
@@ -77,14 +91,21 @@ function BookmarkCard({
           </div>
           <div className="flex items-center gap-1.5 text-preset5 text-neutral800L dark:text-neutral100D">
             <GoClock className="w-3 h-3" />
-            {lastVisited === null ? 'Never' : formateDate(lastVisited)}
+            {lastVisited === null ? "Never" : formateDate(lastVisited)}
           </div>
           <div className="flex items-center gap-1.5 text-preset5 text-neutral800L dark:text-neutral100D">
             <CiCalendar className="w-3 h-3" />
             {formateDate(createdAt)}
           </div>
         </div>
-        {pinned && <BsPin className="w-4 h-4 text-neutral800L dark:text-neutral100D" />}
+        {pinned && (
+          <BsPin className="w-4 h-4 text-neutral800L dark:text-neutral100D" />
+        )}
+        {isArchived && (
+          <div className="px-1.5  rounded text-neutral800L dark:text-neutral100D bg-neutral300L dark:bg-neutral600D text-preset5">
+            Archived
+          </div>
+        )}
       </div>
     </div>
   );
