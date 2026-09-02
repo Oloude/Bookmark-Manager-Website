@@ -4,7 +4,7 @@ import { FaEllipsisVertical } from "react-icons/fa6";
 import { GoClock } from "react-icons/go";
 import { IoEyeOutline } from "react-icons/io5";
 import formateDate from "../utils/formatDate";
-import { useState } from "react";
+
 import BookmarkCardDropdown from "./BookmarkCardDropdown";
 
 type BookmarkProps = {
@@ -114,7 +114,7 @@ export default BookmarkCard;
 
 function Tag({ tag }: { tag: string }) {
   return (
-    <div className="px-2 py-0.5 rounded-md text-neutral800L dark:text-neutral100D bg-neutral100L dark:bg-neutral600D text-preset5">
+    <div className="px-2 py-0.5 rounded-md text-neutral800L dark:text-neutral100D bg-neutral100L dark:bg-neutral600D text-preset5 capitalize">
       {tag}
     </div>
   );

@@ -82,7 +82,8 @@ function AddBookmarkModal({ handleClose }: AddBookmarkProps) {
     };
 
     handleAddNewBookmark(bookmark);
-    toast('Add New Bookmark')
+    handleClose();
+    toast("Add New Bookmark");
   }
 
   return (
@@ -95,7 +96,9 @@ function AddBookmarkModal({ handleClose }: AddBookmarkProps) {
           <MdClose className="w-5 h-5 text-neutral900L dark:text-neutral0" />
         </button>
         <div className="space-y-2">
-          <h2 className="text-preset1 text-neutral900L dark:text-neutral0">Add a bookmark</h2>
+          <h2 className="text-preset1 text-neutral900L dark:text-neutral0">
+            Add a bookmark
+          </h2>
           <p className="text-preset4M text-neutral800L dark:text-neutral100D">
             Save a link with details to keep your collection organized. We
             extract the favicon automatically from the URL.
@@ -108,7 +111,10 @@ function AddBookmarkModal({ handleClose }: AddBookmarkProps) {
           className="flex flex-col gap-5"
         >
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="" className="text-preset4M text-neutral900L dark:text-neutral0">
+            <label
+              htmlFor=""
+              className="text-preset4M text-neutral900L dark:text-neutral0"
+            >
               Title *
             </label>
             <input
@@ -126,7 +132,10 @@ function AddBookmarkModal({ handleClose }: AddBookmarkProps) {
             )}
           </div>
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="" className="text-preset4M text-neutral900L dark:text-neutral0">
+            <label
+              htmlFor=""
+              className="text-preset4M text-neutral900L dark:text-neutral0"
+            >
               Description *
             </label>
             <textarea
@@ -154,7 +163,10 @@ function AddBookmarkModal({ handleClose }: AddBookmarkProps) {
             </span>
           </div>
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="" className="text-preset4M text-neutral900L dark:text-neutral0">
+            <label
+              htmlFor=""
+              className="text-preset4M text-neutral900L dark:text-neutral0"
+            >
               Website URL *
             </label>
             <input
@@ -172,7 +184,10 @@ function AddBookmarkModal({ handleClose }: AddBookmarkProps) {
             )}
           </div>
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="" className="text-preset4M text-neutral900L dark:text-neutral0">
+            <label
+              htmlFor=""
+              className="text-preset4M text-neutral900L dark:text-neutral0"
+            >
               Tags *
             </label>
             <input

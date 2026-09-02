@@ -10,6 +10,7 @@ import UnarchiveModal from "./UnarchiveModal";
 import DeleteModal from "./DeleteModal";
 import useBookmark from "../BookmarkState";
 import { toast } from "react-toastify";
+import EditBookmarkModal from "./EditBookmarkModal";
 
 type DropdownProps = {
   isArchived: boolean;
@@ -39,6 +40,7 @@ function BookmarkCardDropdown({
   const [showArchiveModal, setShowArchiveModal] = useState(false);
   const [showUnarchiveModal, setShowUnarchiveModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false)
   const handleAddVisitCount = useBookmark((state) => state.handleVisitBookmark);
   const handleTogglePinBookmark = useBookmark(
     (state) => state.handleTogglePinBookmark,
@@ -85,6 +87,10 @@ function BookmarkCardDropdown({
         handleTogglePinBookmark(id);
         toast('Unpin Bookmark')
         break;
+      case 'Edit' :
+        setShowEditModal(true)
+        break;
+
     }
   }
 
@@ -102,6 +108,9 @@ function BookmarkCardDropdown({
       {showDeleteModal && (
         <DeleteModal id={id} handleClose={() => setShowDeleteModal(false)} />
       )}
+      {
+        showEditModal && <EditBookmarkModal id={id} handleClose={()=> setShowEditModal(false)}/>
+      }
       <div className="flex flex-col gap-1 p-2 rounded-lg bg-neutral0 dark:bg-neutral600D border border-neutral100L dark:border-neutral500D shadow-profile absolute right-4 top-10 z-20">
         {btns.map(({ icon: Icon, title }) => (
           <button

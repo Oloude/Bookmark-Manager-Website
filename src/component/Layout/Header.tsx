@@ -5,11 +5,17 @@ import { useState } from "react";
 import MobileSidebar from "./MobileSidebar";
 import ProfileDropdown from "../ProfileDropdown";
 import AddBookmarkModal from "../AddBookmarkModal";
+import useBookmark from "../../BookmarkState";
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
   const [showProfileDropwdown, setShowProfileDropdown] = useState(false);
   const [showAddBookmarkModal, setShowAddBookmarkModal] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchQueryChange = useBookmark(
+    (state) => state.handleSearchQueryChange,
+  );
 
   function handleToggleShowMenu() {
     setShowMenu((prev) => !prev);
@@ -43,12 +49,18 @@ function Header() {
           </button>
 
           <div className="border border-neutral100L dark:border-neutral500D dark:bg-neutral600D rounded-lg flex items-center gap-2 px-3 py-2.5 md:py-3 shadow-input w-full max-w-80 min-w-0">
-            <button className="cursor-pointer shrink-0">
+            <button
+              
+              onClick={() => handleSearchQueryChange(searchQuery.trim())}
+              className="cursor-pointer shrink-0"
+            >
               <CiSearch className="w-5 h-5 text-neutral800L dark:text-neutral100D" />
             </button>
 
             <input
               type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by title..."
               className="outline-none text-neutral800L dark:text-neutral100D text-preset4M w-full min-w-0"
             />

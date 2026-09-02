@@ -21,6 +21,7 @@ type BookmarkState = {
   activeBookmark: string;
   sortBy: string;
   selectedTags: string[];
+  searchQuery: string;
   handleThemeChange: () => void;
   handleActiveBookmarkChange: (active: string) => void;
   handleSortByChange: (sort: string) => void;
@@ -28,9 +29,11 @@ type BookmarkState = {
   handleArchiveBookmark: (id: string) => void;
   handleUnarchiveBookmark: (id: string) => void;
   handleDeleteBookmark: (id: string) => void;
-  handleAddNewBookmark : (bookmark : BookmarkType) => void;
-  handleVisitBookmark : (id : string) => void;
-  handleTogglePinBookmark : (id : string) => void;
+  handleAddNewBookmark: (bookmark: BookmarkType) => void;
+  handleVisitBookmark: (id: string) => void;
+  handleTogglePinBookmark: (id: string) => void;
+  handleSearchQueryChange: (query: string) => void;
+  handleEditBookmark: (bookmark: BookmarkType) => void;
 };
 
 const useBookmark = create<BookmarkState>((set) => ({
@@ -39,6 +42,7 @@ const useBookmark = create<BookmarkState>((set) => ({
   activeBookmark: "Home",
   sortBy: "Recently added",
   selectedTags: [],
+  searchQuery: "",
   handleThemeChange: () =>
     set((state) => ({ theme: state.theme === "light" ? "dark" : "light" })),
   handleActiveBookmarkChange: (active) =>
@@ -72,9 +76,35 @@ const useBookmark = create<BookmarkState>((set) => ({
     set((state) => ({
       bookmarks: state.bookmarks.filter((bookmark) => bookmark.id !== id),
     })),
-   handleAddNewBookmark : (bookmark) => set(state => ({bookmarks : [...state.bookmarks, bookmark]})),
-   handleVisitBookmark : (id) => set(state => ({bookmarks : state.bookmarks.map(bookmark => bookmark.id ===id ? {...bookmark, visitCount : bookmark.visitCount + 1} : bookmark)})),
-   handleTogglePinBookmark : (id) => set(state => ({bookmarks : state.bookmarks.map(bookmark => bookmark.id === id ? {...bookmark, pinned : !bookmark.pinned} : bookmark)}))
+  handleAddNewBookmark: (bookmark) =>
+    set((state) => ({ bookmarks: [...state.bookmarks, bookmark] })),
+  handleVisitBookmark: (id) =>
+    set((state) => ({
+      bookmarks: state.bookmarks.map((bookmark) =>
+        bookmark.id === id
+          ? {
+              ...bookmark,
+              visitCount: bookmark.visitCount + 1,
+              lastVisited: new Date().toISOString(),
+            }
+          : bookmark,
+      ),
+    })),
+  handleTogglePinBookmark: (id) =>
+    set((state) => ({
+      bookmarks: state.bookmarks.map((bookmark) =>
+        bookmark.id === id
+          ? { ...bookmark, pinned: !bookmark.pinned }
+          : bookmark,
+      ),
+    })),
+  handleSearchQueryChange: (query) => set({ searchQuery: query }),
+  handleEditBookmark: (bookmark) =>
+    set((state) => ({
+      bookmarks: state.bookmarks.map((b) =>
+        b.id === bookmark.id ? { ...bookmark } : b,
+      ),
+    })),
 }));
 
 export default useBookmark;

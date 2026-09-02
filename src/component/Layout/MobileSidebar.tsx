@@ -88,7 +88,7 @@ function MobileSidebar({ handleToggleShowMenu }: SidebarProps) {
                     onChange={() => handleSelectTag(title)}
                     className="w-4 h-4 accent-teal700"
                   />
-                  <h4 className="text-preset3M text-neutral800L dark:text-neutral100D">{title}</h4>
+                  <h4 className="text-preset3M text-neutral800L dark:text-neutral100D capitalize">{title}</h4>
                 </div>
                 <div className="w-5.25 h-5.25 flex items-center justify-center rounded-full bg-neutral100L dark:bg-neutral600D border border-neutral300L dark:border-neutral400D text-preset5 text-neutral800L dark:text-neutral0">
                   {number}

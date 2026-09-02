@@ -6,6 +6,7 @@ import useBookmark from "../BookmarkState";
 function Heading() {
   const activeBookmark = useBookmark(state => state.activeBookmark)
   const selectedTags = useBookmark(state => state.selectedTags)
+  const searchQuery = useBookmark(state => state.searchQuery)
   const [shoDropdown, setShowDropdown] = useState(false);
 
   function handleToggleShowDrodown() {
@@ -24,6 +25,17 @@ function Heading() {
     Bookmarks tagged:{" "}
     <span className="text-teal700">
       {selectedTags.join(", ")}
+    </span>
+  </>
+);
+  }
+
+  if(searchQuery.trim()){
+     title = (
+  <>
+    Results for: {" "}
+    <span className="text-teal700">
+      “{searchQuery[0].toUpperCase() + searchQuery.slice(1).toLowerCase()}”
     </span>
   </>
 );
